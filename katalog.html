@@ -20,15 +20,16 @@
             height: 100%;
         }
 
-        /* PERBAIKAN UTAMA: Mengunci lebar layar sepenuhnya */
+        /* PERBAIKAN UTAMA: Kunci geser samping, tapi IZINKAN geser atas-bawah */
         html, body {
             width: 100% !important;
             max-width: 100% !important;
-            overflow-x: hidden !important; /* Paksa sembunyikan geser samping */
+            overflow-x: hidden !important; <!-- KUNCI: HANYA sembunyikan geser samping -->
+            overflow-y: auto !important; <!-- KUNCI: Biarkan geser atas-bawah -->
             position: relative !important;
             margin: 0 !important;
             padding: 0 !important;
-            touch-action: pan-y; /* Hanya izinkan geser atas-bawah, blokir kiri-kanan */
+            touch-action: pan-y; <!-- Izinkan geser VERTIKAL saja -->
             -webkit-overflow-scrolling: touch;
         }
 
@@ -114,7 +115,7 @@
             </div>
 
             <!-- Foto 3 -->
-            <div class="bg-[#0c201a] rounded-sm overflow-hidden border border-amber-500/10 hover:border-amber-500/30 shadow-xl transition-all duration-300 flex flex-col justify-between group">
+            <div class="bg-[#0c201a) rounded-sm overflow-hidden border border-amber-500/10 hover:border-amber-500/30 shadow-xl transition-all duration-300 flex flex-col justify-between group">
                 <div>
                     <div class="overflow-hidden">
                         <img src="imgs/3.jpeg" alt="Buket 3" class="w-full h-60 object-cover transform group-hover:scale-105 transition duration-500 brightness-90 group-hover:brightness-100 bg-stone-800">
@@ -138,9 +139,8 @@
                     </div>
                     <div class="p-4 space-y-2">
                         <span class="text-amber-400/80 font-semibold text-[10px] uppercase tracking-widest block">Memories Last Forever</span>
-                        <h3 class="font-luxury-title text-base font-bold text-white tracking-wide">Dari Teman Untuk
-                            Teman</h3>
-                        <p class="font-luxury-serif text-stone-400 text-xs leading-relaxed">Bunga abadi edelweiss, simbol kasih sayang  untuk pelepasan teman tercinta</p>
+                        <h3 class="font-luxury-title text-base font-bold text-white tracking-wide">Dari Teman Untuk Teman</h3>
+                        <p class="font-luxury-serif text-stone-400 text-xs leading-relaxed">Bunga abadi edelweiss, simbol kasih sayang untuk pelepasan teman tercinta</p>
                     </div>
                 </div>
                 <div class="p-4 pt-0">
@@ -165,7 +165,7 @@
             menuDropdown.classList.toggle('hidden');
         });
 
-        document.getElementById('send-wa-btn').addEventListener('click', () => {
+        document.getElementById('send-wa-btn')?.addEventListener('click', () => {
             const nama    = document.getElementById('nama').value.trim();
             const koleksi = document.getElementById('koleksi').value;
             const catatan = document.getElementById('catatan').value.trim();
@@ -185,14 +185,7 @@
             window.open(waURL, '_blank');
         });
 
-        // Tambahan pengaman JS: Cegah zoom dan geser horizontal
-        document.addEventListener('touchmove', function (e) {
-            if (e.scale !== 1) { e.preventDefault(); }
-        }, { passive: false });
-
-        document.addEventListener('gesturestart', function(e) {
-            e.preventDefault();
-        });
+        // ⚠️ KODE YANG BIKIN LAYAR MATI SUDAH DIHAPUS TOTAL DI SINI ⚠️
     </script>
 </body>
 </html>
